@@ -1,0 +1,68 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "MicroML AST Viewer";
+}
+
+<h1>MicroML AST Viewer</h1>
+
+<form method="post" id="astForm">
+    <textarea name="CodeInput" rows="10" cols="60" placeholder="Enter MicroML code here">@Model.CodeInput</textarea><br />
+    <button type="submit">Generate AST</button>
+</form>
+
+@if (!string.IsNullOrWhiteSpace(Model.AstJson))
+{
+    <h2>AST JSON</h2>
+    <pre id="astJson">@Model.AstJson</pre>
+
+    <h2>AST Visualization</h2>
+    <div id="astContainer"></div>
+
+    <script>
+        // Parse the AST JSON and visualize it
+        const astData = @Html.Raw(Model.AstJson);
+        const container = document.getElementById("astContainer");
+
+        function renderAst(node, parentElement) {
+            const nodeElement = document.createElement("div");
+            nodeElement.classList.add("ast-node");
+
+            const label = document.createElement("div");
+            label.classList.add("ast-label");
+
+            if (node.error) {
+                label.textContent = "Error: " + node.error;
+                nodeElement.appendChild(label);
+                parentElement.appendChild(nodeElement);
+                return;
+            }
+
+            label.textContent = node.type;
+            nodeElement.appendChild(label);
+
+            for (const key in node) {
+                if (key !== "type") {
+                    const child = node[key];
+                    const childContainer = document.createElement("div");
+                    childContainer.classList.add("ast-child");
+
+                    if (typeof child === "object" && child !== null) {
+                        renderAst(child, childContainer);
+                    } else {
+                        const leaf = document.createElement("div");
+                        leaf.textContent = key + ": " + child;
+                        leaf.classList.add("ast-leaf");
+                        childContainer.appendChild(leaf);
+                    }
+
+                    nodeElement.appendChild(childContainer);
+                }
+            }
+
+            parentElement.appendChild(nodeElement);
+        }
+
+        renderAst(astData, container);
+    </script>
+}
