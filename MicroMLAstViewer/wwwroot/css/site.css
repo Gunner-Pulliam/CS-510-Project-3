@@ -1,0 +1,22 @@
+.ast-node {
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+.ast-label {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.ast-child {
+  margin-left: 20px;
+}
+
+.ast-leaf {
+  font-style: italic;
+  color: #555;
+}
