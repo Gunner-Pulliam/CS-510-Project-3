@@ -11,3 +11,6 @@ Project Requirements:
 
 Example of Web App running through consle: 
 ![Screenshot (284)](https://github.com/user-attachments/assets/2735eba5-65b2-4e6d-88c3-974b439bb517)
+
+What the Web App looks like:
+![Screenshot (285)](https://github.com/user-attachments/assets/1c773cc3-82a1-442f-94cf-402529faebe4)
