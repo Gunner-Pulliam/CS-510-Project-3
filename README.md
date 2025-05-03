@@ -8,3 +8,6 @@ Project Requirements:
 - The web app should be able to parse the `MicroML` code.
 - Use CSS to style the web page.
 - The app is a single page web app. It should be able to take input from the user and display the AST on the same page.
+
+Example of Web App running through consle: 
+![Screenshot (284)](https://github.com/user-attachments/assets/2735eba5-65b2-4e6d-88c3-974b439bb517)
